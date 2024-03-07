@@ -1,4 +1,5 @@
 using Shooter.Movement;
+using Shooter;
 using Shooter.Shooting;
 using UnityEngine;
 
@@ -38,16 +39,27 @@ namespace Shooter
         void Update()
         {
             var direction = _movementDirectionSource.MovementDirection;
-            _characterMovementController.Direction = direction;
+            var lookDirection = direction;
+            if (_shootingController.HasTarget)
+                lookDirection = (_shootingController.TargetPosition - transform.position).normalized;
 
-            if (_health <= 0)
+            _characterMovementController.MovementDirection = direction;
+            _characterMovementController.LookDirection = lookDirection;
+
+            if (_health <= 0f)
                 Destroy(gameObject);
 
         }
 
         protected void OnTriggerEnter(Collider other)
         {
-            
+            if (LayerUtils.IsBullet(other.gameObject))
+            {
+                var bullet = other.gameObject.GetComponent<Bullet>();
+                _health -= bullet.Damage;
+
+                Destroy(other.gameObject);
+            }
         }
     }
 }

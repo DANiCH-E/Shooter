@@ -15,6 +15,9 @@ namespace Shooter.Shooting
         public float ShootFrequencySec { get; private set; } = 1f;
 
         [SerializeField]
+        private float _damage = 1f;
+
+        [SerializeField]
         private float _bulletMaxFlyDistance = 10f;
 
         [SerializeField]
@@ -31,7 +34,7 @@ namespace Shooter.Shooting
             target.y = 0;
             target.Normalize();
 
-            bullet.Initialize(target, _bulletMaxFlyDistance, _bulletFlySpeed);
+            bullet.Initialize(target, _bulletMaxFlyDistance, _bulletFlySpeed, _damage);
         }
 
     }
