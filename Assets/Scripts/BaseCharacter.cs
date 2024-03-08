@@ -1,5 +1,4 @@
 using Shooter.Movement;
-using Shooter;
 using Shooter.Shooting;
 using UnityEngine;
 
@@ -36,10 +35,11 @@ namespace Shooter
             _shootingController.SetWeapon(_baseWeaponPrefab, _hand);
         }
 
-        void Update()
+        protected void Update()
         {
             var direction = _movementDirectionSource.MovementDirection;
             var lookDirection = direction;
+
             if (_shootingController.HasTarget)
                 lookDirection = (_shootingController.TargetPosition - transform.position).normalized;
 

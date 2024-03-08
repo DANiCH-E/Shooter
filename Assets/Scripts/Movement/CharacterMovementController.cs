@@ -9,9 +9,14 @@ namespace Shooter.Movement
         private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon;
 
         [SerializeField]
-        private float _speed = 1f;
+        private float _initialSpeed = 5f;
+        [SerializeField]
+        private float _speed;
+        [SerializeField]
+        private float _boost = 2f;
         [SerializeField]
         private float _maxRadiansDelta = 10f;
+        
 
         public Vector3 MovementDirection { get; set; }
         public Vector3 LookDirection { get; set; }
@@ -20,6 +25,7 @@ namespace Shooter.Movement
 
         protected void Awake()
         {
+            _speed = _initialSpeed;
             _characterController = GetComponent<CharacterController>();
         }
 
@@ -33,6 +39,15 @@ namespace Shooter.Movement
 
         private void Translate()
         {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _speed *= _boost;
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                _speed = _initialSpeed;
+            }
+
             var delta = MovementDirection * _speed * Time.deltaTime;
             _characterController.Move(delta);
         }
