@@ -1,4 +1,5 @@
 using Shooter.Movement;
+using Shooter.PickUp;
 using Shooter.Shooting;
 using UnityEngine;
 
@@ -57,6 +58,13 @@ namespace Shooter
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
                 _health -= bullet.Damage;
+
+                Destroy(other.gameObject);
+            }
+            else if (LayerUtils.IsPickUp(other.gameObject))
+            {
+                var pickUp = other.gameObject.GetComponent<PickUpWeapon>();
+                _shootingController.SetWeapon(pickUp.WeaponPrefab, _hand);
 
                 Destroy(other.gameObject);
             }
