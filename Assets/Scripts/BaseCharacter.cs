@@ -7,7 +7,7 @@ namespace Shooter
 {
 
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
-    public class BaseCharacter : MonoBehaviour
+    public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
         private Weapon _baseWeaponPrefab;
@@ -33,7 +33,7 @@ namespace Shooter
 
         protected void Start()
         {
-            _shootingController.SetWeapon(_baseWeaponPrefab, _hand);
+            SetWeapon(_baseWeaponPrefab);
         }
 
         protected void Update()
@@ -64,10 +64,15 @@ namespace Shooter
             else if (LayerUtils.IsPickUp(other.gameObject))
             {
                 var pickUp = other.gameObject.GetComponent<PickUpWeapon>();
-                _shootingController.SetWeapon(pickUp.WeaponPrefab, _hand);
+                pickUp.PickUp(this);
 
                 Destroy(other.gameObject);
             }
+        }
+
+        public void SetWeapon(Weapon weapon)
+        {
+            _shootingController.SetWeapon(weapon, _hand);
         }
     }
 }
