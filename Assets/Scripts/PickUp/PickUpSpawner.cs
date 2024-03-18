@@ -14,9 +14,15 @@ namespace Shooter.PickUp
         [SerializeField]
         private int _maxCount = 2;
 
+        //[SerializeField]
+        //private float _spawnIntervalSeconds = 10f;
+
         [SerializeField]
-        private float _spawnIntervalSeconds = 10f;
-        
+        private float _minSpawnIntervalSeconds = 2f;
+
+        [SerializeField]
+        private float _maxSpawnIntervalSeconds = 10f;
+
         private float _currentSpawnTimeSeconds;
         private int _currentCount;
 
@@ -24,8 +30,9 @@ namespace Shooter.PickUp
         {
             if(_currentCount < _maxCount)
             {
+                var spawnIntervalSeconds = Random.Range(_minSpawnIntervalSeconds, _maxSpawnIntervalSeconds);
                 _currentSpawnTimeSeconds += Time.deltaTime;
-                if(_currentSpawnTimeSeconds > _spawnIntervalSeconds)
+                if(_currentSpawnTimeSeconds > spawnIntervalSeconds)
                 {
                     _currentSpawnTimeSeconds = 0f;
                     _currentCount++;
