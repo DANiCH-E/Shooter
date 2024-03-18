@@ -37,17 +37,18 @@ namespace Shooter.Movement
                 Rotate();
         }
 
+        public void IncreaseSpeed()
+        {
+            _speed *= _boost;
+        }
+
+        public void ResetSpeed()
+        {
+            _speed = _initialSpeed;
+        }
+
         private void Translate()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _speed *= _boost;
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                _speed = _initialSpeed;
-            }
-
             var delta = MovementDirection * _speed * Time.deltaTime;
             _characterController.Move(delta);
         }

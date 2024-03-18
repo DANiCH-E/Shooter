@@ -6,11 +6,14 @@ namespace Shooter.Movement
     {
         private UnityEngine.Camera _camera;
 
+        private CharacterMovementController _movementController;
+
         public Vector3 MovementDirection { get; private set; }
 
         protected void Awake()
         {
             _camera = UnityEngine.Camera.main;
+            _movementController = GetComponent<CharacterMovementController>();
         }
 
         void Update()
@@ -24,6 +27,15 @@ namespace Shooter.Movement
             direction.y = 0;
 
             MovementDirection = direction.normalized;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _movementController.IncreaseSpeed();
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                _movementController.ResetSpeed();
+            }
         }
     }
 }
