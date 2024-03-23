@@ -23,6 +23,7 @@ namespace Shooter
         private CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
 
+
         protected void Awake()
         {
             _movementDirectionSource = GetComponent<IMovementDirectionSource>();
@@ -47,6 +48,15 @@ namespace Shooter
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
 
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _characterMovementController.IncreaseSpeed();
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                _characterMovementController.ResetSpeed();
+            }
+
             if (_health <= 0f)
                 Destroy(gameObject);
 
@@ -69,6 +79,8 @@ namespace Shooter
                 Destroy(other.gameObject);
             }
         }
+
+
 
         public void SetWeapon(Weapon weapon)
         {

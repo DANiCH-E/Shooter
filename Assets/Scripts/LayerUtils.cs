@@ -13,6 +13,7 @@ namespace Shooter
         public static readonly int PickUpLayer = LayerMask.NameToLayer(PickUpLayerName);
 
         public static readonly int EnemyMask = LayerMask.GetMask(EnemyLayerName, PlayerLayerName);
+        public static readonly int PickUpsMask = LayerMask.GetMask(PickUpLayerName);
 
         public static bool IsBullet(GameObject other) => other.layer == BulletLayer;
         public static bool IsPickUp(GameObject other) => other.layer == PickUpLayer;
