@@ -1,5 +1,5 @@
 using Shooter.Movement;
-using Shooter.Scripts.Enemy;
+using Shooter.Enemy;
 using UnityEngine;
 
 namespace Shooter.Enemy

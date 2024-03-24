@@ -23,7 +23,7 @@ namespace Shooter.Enemy
         {
             float minDistance = float.MaxValue;
 
-            var count = FindAllTargets(LayerUtils.PickUpsMask | LayerUtils.EnemyMask);
+            var count = FindAllTargets(LayerUtils.PickUpsMask | LayerUtils.CharactersMask);
 
             for (int i = 0; i < count; i++)
             {

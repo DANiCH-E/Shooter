@@ -26,7 +26,7 @@ namespace Shooter.Enemy
         public void CalculatePath(Vector3 targetPosistion)
         {
             NavMesh.SamplePosition(_agentTransform.position, out var agentHit, 10f, _filter);
-            NavMesh.SamplePosition(targetPosistion, out var _targetHit, 10f, _filter);
+            NavMesh.SamplePosition(targetPosistion, out _targetHit, 10f, _filter);
 
             IsPathCalculated = NavMesh.CalculatePath(agentHit.position, _targetHit.position, _filter, _navMeshPath);
             _currentPathPointIndex = 0;

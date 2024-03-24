@@ -3,7 +3,7 @@ using Shooter.Enemy.States;
 using System.Collections;
 using UnityEngine;
 
-namespace Shooter.Scripts.Enemy
+namespace Shooter.Enemy
 {
     public class EnemyAIController : MonoBehaviour
     {
