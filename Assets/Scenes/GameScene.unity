@@ -452,7 +452,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1626851454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &491210335
+--- !u!1001 &630540985
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -461,12 +461,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2675338407582445756, guid: 96de0df880633a84db47f917a38fb340, type: 3}
-      propertyPath: _baseWeaponPrefab
-      value: 
-      objectReference: {fileID: -533549880025194984, guid: 4e404d65871ba3e4a8a0e3ba62e988fe, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2675338407582445756, guid: 96de0df880633a84db47f917a38fb340, type: 3}
+      propertyPath: _maxHealth
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.427752
+      value: 20.92
       objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalPosition.y
@@ -474,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.2802105
+      value: 21.29
       objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalRotation.w
@@ -506,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2660014248491560311, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_Name
-      value: Enemy (2)
+      value: Enemy (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -902,7 +906,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &943338812
+--- !u!1001 &955673020
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -911,12 +915,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2675338407582445756, guid: 96de0df880633a84db47f917a38fb340, type: 3}
-      propertyPath: _baseWeaponPrefab
-      value: 
-      objectReference: {fileID: -533549880025194984, guid: 4e404d65871ba3e4a8a0e3ba62e988fe, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2675338407582445756, guid: 96de0df880633a84db47f917a38fb340, type: 3}
+      propertyPath: _maxHealth
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.92
+      value: 4.26
       objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalPosition.y
@@ -924,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.8
+      value: 2.2802105
       objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalRotation.w
@@ -956,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2660014248491560311, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_Name
-      value: Enemy (4)
+      value: Enemy (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1802,9 +1810,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2675338407582445756, guid: 96de0df880633a84db47f917a38fb340, type: 3}
-      propertyPath: _baseWeaponPrefab
-      value: 
-      objectReference: {fileID: -533549880025194984, guid: 4e404d65871ba3e4a8a0e3ba62e988fe, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2675338407582445756, guid: 96de0df880633a84db47f917a38fb340, type: 3}
+      propertyPath: _maxHealth
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1761332755286614449, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.92
@@ -1868,7 +1880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673006207824532410, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
       propertyPath: _health
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5673006207824532412, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
       propertyPath: m_RootOrder
@@ -1934,6 +1946,6 @@ SceneRoots:
   - {fileID: 1543270242}
   - {fileID: 250676907}
   - {fileID: 82956457}
-  - {fileID: 491210335}
   - {fileID: 2073043779}
-  - {fileID: 943338812}
+  - {fileID: 955673020}
+  - {fileID: 630540985}

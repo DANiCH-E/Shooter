@@ -18,9 +18,17 @@ namespace Shooter
         [SerializeField]
         private float _health = 2f;
 
+        [SerializeField]
+        private float _maxHealth = 6f;
+
+        public float GetHP { get { return _health; } }
+        public float GetMaxHP { get { return _maxHealth; } }
+
         private IMovementDirectionSource _movementDirectionSource;
 
         private CharacterMovementController _characterMovementController;
+        public CharacterMovementController GetCharacterMovementController { get { return _characterMovementController; } }
+
         private ShootingController _shootingController;
 
 

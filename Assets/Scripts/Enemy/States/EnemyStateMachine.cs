@@ -1,6 +1,6 @@
 ﻿using Shooter.FSM;
 using System.Collections.Generic;
-
+using UnityEngine;
 
 namespace Shooter.Enemy.States
 {
@@ -8,12 +8,20 @@ namespace Shooter.Enemy.States
     {
         private const float NavMeshTurnOffDistance = 5;
 
+        private EnemyCharacter _enemycharacter;
+
+        const int procentForEscape = 30;
+
         public EnemyStateMachine(EnemyDirectionController enemyDirectionController,
-            NavMesher navMesher, EnemyTarget target)
+            NavMesher navMesher, EnemyTarget target, EnemyCharacter enemycharacter, float probOfEscape)
         {
+            _enemycharacter = enemycharacter;
             var idleState = new IdleState();
             var findWayState = new FindWayState(target, navMesher, enemyDirectionController);
             var moveForwardState = new MoveForwardState(target, enemyDirectionController);
+            var escapeState = new EscapeState(target, enemyDirectionController, enemycharacter);
+
+            
 
             SetInitialState(idleState);
 
@@ -25,6 +33,9 @@ namespace Shooter.Enemy.States
                 new Transition(
                     moveForwardState,
                     () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance),
+                 new Transition(
+                    escapeState,
+                    () => _enemycharacter.GetHP / _enemycharacter.GetMaxHP * 100 < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
             });
 
             AddState(state: findWayState, transitions: new List<Transition>
@@ -45,6 +56,16 @@ namespace Shooter.Enemy.States
                 new Transition(
                     findWayState,
                     () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance),
+                new Transition(
+                    escapeState,
+                    () => _enemycharacter.GetHP / _enemycharacter.GetMaxHP * 100 < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
+            });
+
+            AddState(state: escapeState, transitions: new List<Transition>
+            {
+                new Transition(
+                    idleState,
+                    () => target.Closest == null),
             });
         }
     }
