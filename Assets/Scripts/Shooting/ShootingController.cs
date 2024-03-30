@@ -27,6 +27,8 @@ namespace Shooter.Shooting
             }
         }
 
+        public Weapon GetWeapon { get { return _weapon; } }
+
         public void SetWeapon(Weapon weaponPrefab, Transform hand)
         {
             if (_weapon != null)

@@ -163,6 +163,7 @@ MonoBehaviour:
   _initialSpeed: 5
   _speed: 1
   _boost: 2
+  _boostForEscape: 2
   _maxRadiansDelta: 10
 --- !u!114 &109122218343978390
 MonoBehaviour:
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f262aa737945834dbb7cefd3467b9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseWeaponPrefab: {fileID: -533549880025194984, guid: 4e404d65871ba3e4a8a0e3ba62e988fe, type: 3}
+  _baseWeaponPrefab: {fileID: -533549880025194984, guid: 803ea6e19f2977c45813fc8de723f594, type: 3}
   _hand: {fileID: 1651627387619185734}
   _health: 5
   _maxHealth: 2
@@ -217,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewRadius: 20
+  _probOfEscape: 70
 --- !u!1 &5654550669036905581
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using Shooter.Movement;
 using Shooter.PickUp;
 using Shooter.Shooting;
+using System;
 using UnityEngine;
 
 namespace Shooter
@@ -21,6 +22,8 @@ namespace Shooter
         [SerializeField]
         private float _maxHealth = 6f;
 
+        public event Action<BaseCharacter> OnSpawn;
+
         public float GetHP { get { return _health; } }
         public float GetMaxHP { get { return _maxHealth; } }
 
@@ -31,6 +34,10 @@ namespace Shooter
 
         private ShootingController _shootingController;
 
+        public virtual void Spawn(BaseCharacter character)
+        {
+            OnSpawn?.Invoke(this);
+        }
 
         protected void Awake()
         {
@@ -88,7 +95,10 @@ namespace Shooter
             }
         }
 
-
+        public Weapon GetWeapon()
+        {
+            return _shootingController.GetWeapon;
+        }
 
         public void SetWeapon(Weapon weapon)
         {
