@@ -25,7 +25,7 @@ namespace Shooter.Enemy.States
         public override void Execute()
         {
             //_enemycharacter.GetCharacterMovementController.IncreaseSpeedForEscape();
-
+            
             Vector3 targetPosition = _target.Closest.transform.position;
 
             if (_currentPoint != targetPosition)

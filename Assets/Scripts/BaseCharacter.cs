@@ -63,17 +63,22 @@ namespace Shooter
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && this is PlayerCharacter)
             {
                 _characterMovementController.IncreaseSpeed();
             }
-            else if (Input.GetKeyUp(KeyCode.Space))
+            else if (Input.GetKeyUp(KeyCode.Space) && this is PlayerCharacter)
             {
                 _characterMovementController.ResetSpeed();
             }
 
             if (_health <= 0f)
+            {
+                
                 Destroy(gameObject);
+                gameObject.GetComponent<BaseCharacter>().Spawn(this);
+            }
+               
 
         }
 

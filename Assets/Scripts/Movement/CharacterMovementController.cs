@@ -31,6 +31,7 @@ namespace Shooter.Movement
         {
             _speed = _initialSpeed;
             _characterController = GetComponent<CharacterController>();
+            _boostForEscape += _speed;
         }
 
         protected void Update()
@@ -48,7 +49,7 @@ namespace Shooter.Movement
 
         public void IncreaseSpeedForEscape()
         {
-            _speed += _boostForEscape;
+            _speed = _boostForEscape;
         }
 
         public void ResetSpeed()
