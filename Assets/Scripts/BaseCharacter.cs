@@ -1,6 +1,7 @@
 using Shooter.Movement;
 using Shooter.PickUp;
 using Shooter.Shooting;
+using System;
 using UnityEngine;
 
 namespace Shooter
@@ -18,10 +19,25 @@ namespace Shooter
         [SerializeField]
         private float _health = 2f;
 
+        [SerializeField]
+        private float _maxHealth = 6f;
+
+        public event Action<BaseCharacter> OnSpawn;
+
+        public float GetHP { get { return _health; } }
+        public float GetMaxHP { get { return _maxHealth; } }
+
         private IMovementDirectionSource _movementDirectionSource;
 
         private CharacterMovementController _characterMovementController;
+        public CharacterMovementController GetCharacterMovementController { get { return _characterMovementController; } }
+
         private ShootingController _shootingController;
+
+        public virtual void Spawn(BaseCharacter character)
+        {
+            OnSpawn?.Invoke(this);
+        }
 
         protected void Awake()
         {
@@ -47,8 +63,22 @@ namespace Shooter
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
 
+            if (Input.GetKeyDown(KeyCode.Space) && this is PlayerCharacter)
+            {
+                _characterMovementController.IncreaseSpeed();
+            }
+            else if (Input.GetKeyUp(KeyCode.Space) && this is PlayerCharacter)
+            {
+                _characterMovementController.ResetSpeed();
+            }
+
             if (_health <= 0f)
+            {
+                
                 Destroy(gameObject);
+                gameObject.GetComponent<BaseCharacter>().Spawn(this);
+            }
+               
 
         }
 
@@ -68,6 +98,11 @@ namespace Shooter
 
                 Destroy(other.gameObject);
             }
+        }
+
+        public Weapon GetWeapon()
+        {
+            return _shootingController.GetWeapon;
         }
 
         public void SetWeapon(Weapon weapon)

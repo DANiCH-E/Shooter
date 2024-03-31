@@ -27,6 +27,8 @@ namespace Shooter.Shooting
             }
         }
 
+        public Weapon GetWeapon { get { return _weapon; } }
+
         public void SetWeapon(Weapon weaponPrefab, Transform hand)
         {
             if (_weapon != null)
@@ -43,7 +45,7 @@ namespace Shooter.Shooting
 
             var position = _weapon.transform.position;
             var radius = _weapon.ShootRadius;
-            var mask = LayerUtils.EnemyMask;
+            var mask = LayerUtils.CharactersMask;
 
             var size = Physics.OverlapSphereNonAlloc(position, radius, _colliders, mask);
 

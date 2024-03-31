@@ -15,11 +15,15 @@ namespace Shooter.Movement
         [SerializeField]
         private float _boost = 2f;
         [SerializeField]
+        private float _boostForEscape = 0.1f;
+        [SerializeField]
         private float _maxRadiansDelta = 10f;
         
 
         public Vector3 MovementDirection { get; set; }
         public Vector3 LookDirection { get; set; }
+
+        public float GetSpeed { get { return _speed; } }
 
         private CharacterController _characterController;
 
@@ -27,6 +31,7 @@ namespace Shooter.Movement
         {
             _speed = _initialSpeed;
             _characterController = GetComponent<CharacterController>();
+            _boostForEscape += _speed;
         }
 
         protected void Update()
@@ -40,6 +45,11 @@ namespace Shooter.Movement
         public void IncreaseSpeed()
         {
             _speed *= _boost;
+        }
+
+        public void IncreaseSpeedForEscape()
+        {
+            _speed = _boostForEscape;
         }
 
         public void ResetSpeed()
