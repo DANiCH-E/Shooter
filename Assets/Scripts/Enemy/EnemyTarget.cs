@@ -9,6 +9,7 @@ namespace Shooter.Enemy
         private readonly float _viewRadius;
         private readonly Transform _agentTransform;
         private readonly PlayerCharacter _player;
+        private WeaponUtils _weaponUtils;
 
         private readonly Collider[] _colliders = new Collider[10];
 
@@ -17,8 +18,10 @@ namespace Shooter.Enemy
             _agentTransform = agent;
             _player = player;
             _viewRadius = viewRadius;
+            _weaponUtils = new WeaponUtils();
         }
 
+        
         public void FindClosest(bool shouldChase)
         {
             float minDistance = float.MaxValue;
@@ -30,7 +33,7 @@ namespace Shooter.Enemy
                 var go = _colliders[i].gameObject;
                 if (go == _agentTransform.gameObject) continue;
 
-                if (go.gameObject.tag != "Rifle" && go.gameObject.tag != "SniperRifle" && shouldChase)
+                if (go.gameObject.tag != _weaponUtils.Rifle && go.gameObject.tag != _weaponUtils.SniperRifle && shouldChase)
                 {
                     if (_player != null && DistanceFromAgentTo(_player.gameObject) < minDistance)
                         Closest = _player.gameObject;

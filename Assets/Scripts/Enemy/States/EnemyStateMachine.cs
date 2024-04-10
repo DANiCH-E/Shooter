@@ -10,10 +10,9 @@ namespace Shooter.Enemy.States
 
         private EnemyCharacter _enemycharacter;
 
-        const int procentForEscape = 30;
-
         public EnemyStateMachine(EnemyDirectionController enemyDirectionController,
-            NavMesher navMesher, EnemyTarget target, EnemyCharacter enemycharacter, float probOfEscape)
+            NavMesher navMesher, EnemyTarget target, EnemyCharacter enemycharacter, 
+            float probOfEscape, int procentForEscape)
         {
             _enemycharacter = enemycharacter;
             var idleState = new IdleState();
@@ -35,7 +34,7 @@ namespace Shooter.Enemy.States
                     () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance),
                  new Transition(
                     escapeState,
-                    () => _enemycharacter.GetHP / _enemycharacter.GetMaxHP * 100 < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
+                    () => _enemycharacter.GetHPProc() < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
             });
 
             AddState(state: findWayState, transitions: new List<Transition>
@@ -58,7 +57,7 @@ namespace Shooter.Enemy.States
                     () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance),
                 new Transition(
                     escapeState,
-                    () => _enemycharacter.GetHP / _enemycharacter.GetMaxHP * 100 < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
+                    () => _enemycharacter.GetHPProc() < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
             });
 
             AddState(state: escapeState, transitions: new List<Transition>

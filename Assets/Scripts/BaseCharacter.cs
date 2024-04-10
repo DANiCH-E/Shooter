@@ -2,6 +2,7 @@ using Shooter.Movement;
 using Shooter.PickUp;
 using Shooter.Shooting;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Shooter
@@ -15,6 +16,9 @@ namespace Shooter
 
         [SerializeField]
         private Transform _hand;
+
+        [SerializeField]
+        private Animator _animator;
 
         [SerializeField]
         private float _health = 2f;
@@ -33,6 +37,8 @@ namespace Shooter
         public CharacterMovementController GetCharacterMovementController { get { return _characterMovementController; } }
 
         private ShootingController _shootingController;
+
+        private bool _IsDead = false;
 
         public virtual void Spawn(BaseCharacter character)
         {
@@ -63,6 +69,9 @@ namespace Shooter
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
 
+            _animator.SetBool("IsMoving", direction != Vector3.zero);
+            _animator.SetBool("IsShooting", _shootingController.HasTarget);
+
             if (Input.GetKeyDown(KeyCode.Space) && this is PlayerCharacter)
             {
                 _characterMovementController.IncreaseSpeed();
@@ -74,12 +83,25 @@ namespace Shooter
 
             if (_health <= 0f)
             {
+                if(!_IsDead)
+                {
+                    _IsDead = true;
+                    _animator.SetBool("IsMoving", false);
+                    _animator.SetBool("IsShooting", false);
+                    StartCoroutine(Die());
+                }
                 
-                Destroy(gameObject);
-                gameObject.GetComponent<BaseCharacter>().Spawn(this);
             }
-               
+              
 
+        }
+
+        IEnumerator Die()
+        {
+            _animator.SetTrigger("IsDead");
+            yield return new WaitForSeconds(3f);
+            Destroy(gameObject);
+            gameObject.GetComponent<BaseCharacter>().Spawn(this);
         }
 
         protected void OnTriggerEnter(Collider other)
@@ -108,6 +130,11 @@ namespace Shooter
         public void SetWeapon(Weapon weapon)
         {
             _shootingController.SetWeapon(weapon, _hand);
+        }
+
+        public float GetHPProc()
+        {
+            return _health / _maxHealth * 100;
         }
     }
 }
