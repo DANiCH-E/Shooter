@@ -2,6 +2,7 @@ using Shooter.Movement;
 using Shooter.PickUp;
 using Shooter.Shooting;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Shooter
@@ -36,6 +37,8 @@ namespace Shooter
         public CharacterMovementController GetCharacterMovementController { get { return _characterMovementController; } }
 
         private ShootingController _shootingController;
+
+        private bool _IsDead = false;
 
         public virtual void Spawn(BaseCharacter character)
         {
@@ -80,13 +83,25 @@ namespace Shooter
 
             if (_health <= 0f)
             {
-                _animator.SetBool("IsDeath", _health <= 0f);
+                if(!_IsDead)
+                {
+                    _IsDead = true;
+                    _animator.SetBool("IsMoving", false);
+                    _animator.SetBool("IsShooting", false);
+                    StartCoroutine(Die());
+                }
                 
-                Destroy(gameObject);
-                gameObject.GetComponent<BaseCharacter>().Spawn(this);
             }
-               
+              
 
+        }
+
+        IEnumerator Die()
+        {
+            _animator.SetTrigger("IsDead");
+            yield return new WaitForSeconds(3f);
+            Destroy(gameObject);
+            gameObject.GetComponent<BaseCharacter>().Spawn(this);
         }
 
         protected void OnTriggerEnter(Collider other)
