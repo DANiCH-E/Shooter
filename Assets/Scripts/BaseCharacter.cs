@@ -42,7 +42,7 @@ namespace Shooter
 
         private float _moveSpeed = 1f;
 
-        private bool isMovingAwayFromEnemy = false;
+        private bool isMovingOppositeToTarget = false;
 
         public virtual void Spawn(BaseCharacter character)
         {
@@ -78,14 +78,20 @@ namespace Shooter
             _animator.SetBool("IsMoving", direction != Vector3.zero);
             _animator.SetBool("IsShooting", _shootingController.HasTarget);
 
-            
-            if (_animator.GetBool("IsMoving") && _animator.GetBool("IsShooting"))
+
+            if (Vector3.Dot(direction, lookDirection) < -0.5f && _shootingController.HasTarget && !isMovingOppositeToTarget)
             {
-                _animator.SetFloat("Coef", -1f);
+                isMovingOppositeToTarget = true;
+                _animator.SetFloat("Speed", -1f);
             }
-            
-            
-            
+            else if (Vector3.Dot(direction, lookDirection) >= -0.5f || _shootingController.HasTarget)
+            {
+                isMovingOppositeToTarget = false;
+                _animator.SetFloat("Speed", 1f);
+            }
+
+
+
 
             if (Input.GetKeyDown(KeyCode.Space) && this is PlayerCharacter)
             {
