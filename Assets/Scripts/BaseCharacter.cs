@@ -4,6 +4,7 @@ using Shooter.Shooting;
 using System;
 using System.Collections;
 using UnityEngine;
+using System;
 
 namespace Shooter
 {
@@ -11,6 +12,8 @@ namespace Shooter
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
     public abstract class BaseCharacter : MonoBehaviour
     {
+        public event Action<BaseCharacter> Dead;
+
         [SerializeField]
         private Weapon _baseWeaponPrefab;
 
@@ -123,6 +126,7 @@ namespace Shooter
         {
             _animator.SetTrigger("IsDead");
             yield return new WaitForSeconds(3f);
+            Dead?.Invoke(this);
             Destroy(gameObject);
             gameObject.GetComponent<BaseCharacter>().Spawn(this);
         }

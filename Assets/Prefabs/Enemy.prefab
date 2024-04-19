@@ -888,7 +888,7 @@ MonoBehaviour:
   _baseWeaponPrefab: {fileID: -533549880025194984, guid: 803ea6e19f2977c45813fc8de723f594, type: 3}
   _hand: {fileID: 1651627387619185734}
   _animator: {fileID: -1864559188370036600}
-  _health: 15
+  _health: 1
   _maxHealth: 15
 --- !u!114 &6496945534148437080
 MonoBehaviour:
