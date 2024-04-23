@@ -31,6 +31,11 @@ namespace Shooter
             Timer.TimeEnd += PlayerLose;
         }
 
+        private void Update()
+        {
+            Debug.Log(Enemies.Count);
+        }
+
         private void OnPlayerDead(BaseCharacter sender)
         {
             Player.Dead -= OnPlayerDead;

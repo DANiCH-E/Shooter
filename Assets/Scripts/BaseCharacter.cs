@@ -4,7 +4,7 @@ using Shooter.Shooting;
 using System;
 using System.Collections;
 using UnityEngine;
-using System;
+
 
 namespace Shooter
 {
@@ -70,7 +70,6 @@ namespace Shooter
             var direction = _movementDirectionSource.MovementDirection;
             var lookDirection = direction;
 
-            Debug.Log(direction);
 
             if (_shootingController.HasTarget)
                 lookDirection = (_shootingController.TargetPosition - transform.position).normalized;
@@ -82,16 +81,16 @@ namespace Shooter
             _animator.SetBool("IsShooting", _shootingController.HasTarget);
 
 
-            if (Vector3.Dot(direction, lookDirection) < -0.5f && _shootingController.HasTarget && !isMovingOppositeToTarget)
-            {
-                isMovingOppositeToTarget = true;
-                _animator.SetFloat("Speed", -1f);
-            }
-            else if (Vector3.Dot(direction, lookDirection) >= -0.5f || _shootingController.HasTarget)
-            {
-                isMovingOppositeToTarget = false;
-                _animator.SetFloat("Speed", 1f);
-            }
+            //if (Vector3.Dot(direction, lookDirection) < -0.5f && _shootingController.HasTarget && !isMovingOppositeToTarget)
+            //{
+            //    isMovingOppositeToTarget = true;
+            //    _animator.SetFloat("Speed", -1f);
+            //}
+            //else if (Vector3.Dot(direction, lookDirection) >= -0.5f || _shootingController.HasTarget)
+            //{
+            //    isMovingOppositeToTarget = false;
+            //    _animator.SetFloat("Speed", 1f);
+            //}
 
 
 
