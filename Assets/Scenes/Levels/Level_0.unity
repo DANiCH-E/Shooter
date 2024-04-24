@@ -1517,7 +1517,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8744230129375617179, guid: 552444e9e7918314a98aa337cceeab49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.04
+      value: 23.54
       objectReference: {fileID: 0}
     - target: {fileID: 8744230129375617179, guid: 552444e9e7918314a98aa337cceeab49, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3531,6 +3531,14 @@ PrefabInstance:
     - target: {fileID: 2660014248491560311, guid: 96de0df880633a84db47f917a38fb340, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193868897661595657, guid: 96de0df880633a84db47f917a38fb340, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193868897661595657, guid: 96de0df880633a84db47f917a38fb340, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14276,6 +14284,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1558457671}
     m_Modifications:
+    - target: {fileID: 1564748269971968731, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 1934081036774461372, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3080922428952899125, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
       propertyPath: m_Camera
       value: 
@@ -14334,6 +14350,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673006207824532412, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850220914850757715, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850220914850757715, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

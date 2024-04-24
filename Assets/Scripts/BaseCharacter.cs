@@ -29,6 +29,8 @@ namespace Shooter
         [SerializeField]
         private float _maxHealth = 6f;
 
+        [SerializeField] HealthBarUI _healthBarUI;
+
         public event Action<BaseCharacter> OnSpawn;
 
         public float GetHP { get { return _health; } }
@@ -54,15 +56,20 @@ namespace Shooter
 
         protected void Awake()
         {
+            
             _movementDirectionSource = GetComponent<IMovementDirectionSource>();
 
             _characterMovementController = GetComponent<CharacterMovementController>();
             _shootingController = GetComponent<ShootingController>();
+            _healthBarUI = GetComponentInChildren<HealthBarUI>();
         }
 
         protected void Start()
         {
+            _health = _maxHealth;
+            _healthBarUI.UpdateHealthBar(_health, _maxHealth);
             SetWeapon(_baseWeaponPrefab);
+            
         }
 
         protected void Update()
@@ -136,7 +143,7 @@ namespace Shooter
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
                 _health -= bullet.Damage;
-
+                _healthBarUI.UpdateHealthBar(_health, _maxHealth);
                 Destroy(other.gameObject);
             }
             else if (LayerUtils.IsPickUp(other.gameObject))
