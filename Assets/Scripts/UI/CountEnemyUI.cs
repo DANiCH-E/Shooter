@@ -9,7 +9,7 @@ using System.Linq;
 public class CountEnemyUI : MonoBehaviour
 {
 
-    public List<EnemyCharacter> Enemies { get; private set; }
+    GameObject[] enemies;
 
     [SerializeField]
     private TextMeshProUGUI _outputText;
@@ -18,13 +18,13 @@ public class CountEnemyUI : MonoBehaviour
 
     private void Start()
     {
-        Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         _format = _outputText.text;
     }
 
     private void Update()
     {
         //Debug.Log(Enemies.Count);
-        _outputText.text = string.Format(_format, Enemies.Count);
+        _outputText.text = string.Format(_format, enemies.Length.ToString());
     }
 }

@@ -14,25 +14,37 @@ namespace Shooter
 
         public TimerUI Timer { get; private set; }
 
+        public CountEnemyUI CountOfEnemies { get; private set; }
+
         public PlayerCharacter Player { get; private set; }
         public List<EnemyCharacter> Enemies { get; private set; }
+
+        
+
+
 
         private void Start()
         {
             Player = FindObjectOfType<PlayerCharacter>();
             Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
             Timer = FindObjectOfType<TimerUI>();
-
+            
             Player.Dead += OnPlayerDead;
+
+            //_countEnemyUI.UpdateCountOfEnemies(Enemies.Count);
 
             foreach (var enemy in Enemies)
                 enemy.Dead += OnEnemyDead;
 
             Timer.TimeEnd += PlayerLose;
+
+
         }
 
         private void Update()
         {
+            Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
+            //_countEnemyUI.UpdateCountOfEnemies(Enemies.Count);
             Debug.Log(Enemies.Count);
         }
 
@@ -45,11 +57,14 @@ namespace Shooter
 
         private void OnEnemyDead(BaseCharacter sender)
         {
+            Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
             var enemy = sender as EnemyCharacter;
             Enemies.Remove(enemy);
             enemy.Dead -= OnEnemyDead;
 
-            if(Enemies.Count == 0)
+            
+
+            if (Enemies.Count == 0)
             {
                 Win?.Invoke();
                 Time.timeScale = 0f;

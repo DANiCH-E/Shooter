@@ -22,5 +22,6 @@ public class OpenLevel : MonoBehaviour
     {
         int level = _levelsList[Random.Range(0, _levelsList.Count)];
         SceneManager.LoadScene(level);
+        Time.timeScale = 1f;
     }
 }
