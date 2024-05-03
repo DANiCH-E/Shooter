@@ -5,12 +5,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+
 namespace Shooter
 {
 
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
     public abstract class BaseCharacter : MonoBehaviour
     {
+        public event Action<BaseCharacter> Dead;
+
         [SerializeField]
         private Weapon _baseWeaponPrefab;
 
@@ -25,6 +28,8 @@ namespace Shooter
 
         [SerializeField]
         private float _maxHealth = 6f;
+
+        [SerializeField] HealthBarUI _healthBarUI;
 
         public event Action<BaseCharacter> OnSpawn;
 
@@ -51,15 +56,20 @@ namespace Shooter
 
         protected void Awake()
         {
+            
             _movementDirectionSource = GetComponent<IMovementDirectionSource>();
 
             _characterMovementController = GetComponent<CharacterMovementController>();
             _shootingController = GetComponent<ShootingController>();
+            _healthBarUI = GetComponentInChildren<HealthBarUI>();
         }
 
         protected void Start()
         {
+            _health = _maxHealth;
+            _healthBarUI.UpdateHealthBar(_health, _maxHealth);
             SetWeapon(_baseWeaponPrefab);
+            
         }
 
         protected void Update()
@@ -67,7 +77,6 @@ namespace Shooter
             var direction = _movementDirectionSource.MovementDirection;
             var lookDirection = direction;
 
-            Debug.Log(direction);
 
             if (_shootingController.HasTarget)
                 lookDirection = (_shootingController.TargetPosition - transform.position).normalized;
@@ -79,16 +88,16 @@ namespace Shooter
             _animator.SetBool("IsShooting", _shootingController.HasTarget);
 
 
-            if (Vector3.Dot(direction, lookDirection) < -0.5f && _shootingController.HasTarget && !isMovingOppositeToTarget)
-            {
-                isMovingOppositeToTarget = true;
-                _animator.SetFloat("Speed", -1f);
-            }
-            else if (Vector3.Dot(direction, lookDirection) >= -0.5f || _shootingController.HasTarget)
-            {
-                isMovingOppositeToTarget = false;
-                _animator.SetFloat("Speed", 1f);
-            }
+            //if (Vector3.Dot(direction, lookDirection) < -0.5f && _shootingController.HasTarget && !isMovingOppositeToTarget)
+            //{
+            //    isMovingOppositeToTarget = true;
+            //    _animator.SetFloat("Speed", -1f);
+            //}
+            //else if (Vector3.Dot(direction, lookDirection) >= -0.5f || _shootingController.HasTarget)
+            //{
+            //    isMovingOppositeToTarget = false;
+            //    _animator.SetFloat("Speed", 1f);
+            //}
 
 
 
@@ -123,6 +132,7 @@ namespace Shooter
         {
             _animator.SetTrigger("IsDead");
             yield return new WaitForSeconds(3f);
+            Dead?.Invoke(this);
             Destroy(gameObject);
             gameObject.GetComponent<BaseCharacter>().Spawn(this);
         }
@@ -133,7 +143,7 @@ namespace Shooter
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
                 _health -= bullet.Damage;
-
+                _healthBarUI.UpdateHealthBar(_health, _maxHealth);
                 Destroy(other.gameObject);
             }
             else if (LayerUtils.IsPickUp(other.gameObject))

@@ -15,7 +15,7 @@ namespace Shooter
 
         private float _currentSpawnTimeSeconds;
         private int _currentCount;
-        private bool _canSpawnPlayer = true;
+        
 
         protected void Update()
         {
@@ -30,7 +30,7 @@ namespace Shooter
                     _currentCount++;
 
                     int randomIndex = Random.Range(0, 2);
-                    Debug.Log(player);
+                    
                     if (randomIndex == 0 && !player)
                     {
                         var randomPointInsideRange = Random.insideUnitCircle * _range;
