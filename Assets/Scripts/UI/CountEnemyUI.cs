@@ -14,17 +14,18 @@ public class CountEnemyUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _outputText;
     private string _format;
-
+    public List<EnemyCharacter> Enemies { get; private set; }
 
     private void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
         _format = _outputText.text;
     }
 
     private void Update()
     {
+        Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
         //Debug.Log(Enemies.Count);
-        _outputText.text = string.Format(_format, enemies.Length.ToString());
+        _outputText.text = string.Format(_format, Enemies.Count.ToString());
     }
 }

@@ -19,10 +19,6 @@ namespace Shooter
         public PlayerCharacter Player { get; private set; }
         public List<EnemyCharacter> Enemies { get; private set; }
 
-        
-
-
-
         private void Start()
         {
             Player = FindObjectOfType<PlayerCharacter>();
@@ -43,9 +39,7 @@ namespace Shooter
 
         private void Update()
         {
-            Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
-            //_countEnemyUI.UpdateCountOfEnemies(Enemies.Count);
-            Debug.Log(Enemies.Count);
+            
         }
 
         private void OnPlayerDead(BaseCharacter sender)
@@ -57,12 +51,10 @@ namespace Shooter
 
         private void OnEnemyDead(BaseCharacter sender)
         {
-            Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
             var enemy = sender as EnemyCharacter;
             Enemies.Remove(enemy);
             enemy.Dead -= OnEnemyDead;
 
-            
 
             if (Enemies.Count == 0)
             {
