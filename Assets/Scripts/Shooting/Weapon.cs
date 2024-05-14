@@ -26,9 +26,17 @@ namespace Shooter.Shooting
         [SerializeField]
         private Transform _bulletSpawnPosition;
 
+        [SerializeField]
+        private ParticleSystem _shootingParticle;
+
+        [SerializeField]
+        private AudioSource _shootAudio;
+
         public void Shoot(Vector3 targetPoint)
         {
             var bullet = Instantiate(BulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);
+            _shootingParticle.Play();
+            _shootAudio.Play();
 
             var target = targetPoint - _bulletSpawnPosition.position;
             target.y = 0;

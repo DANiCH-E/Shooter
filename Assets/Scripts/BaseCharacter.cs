@@ -31,6 +31,12 @@ namespace Shooter
 
         [SerializeField] HealthBarUI _healthBarUI;
 
+        [SerializeField] private ParticleSystem _bloodDamageUI;
+
+        [SerializeField] private ParticleSystem _deadExplosionUI;
+
+        [SerializeField] private AudioSource _voiceDamage;
+
         public event Action<BaseCharacter> OnSpawn;
 
         public float GetHP { get { return _health; } }
@@ -48,6 +54,8 @@ namespace Shooter
         private float _moveSpeed = 1f;
 
         private bool isMovingOppositeToTarget = false;
+
+
 
         public virtual void Spawn(BaseCharacter character)
         {
@@ -113,14 +121,18 @@ namespace Shooter
 
             if (_health <= 0f)
             {
-                if(!_IsDead)
+                
+                if (!_IsDead)
                 {
+                    
                     _IsDead = true;
                     _animator.SetBool("IsMoving", false);
                     _animator.SetBool("IsShooting", false);
                     _shootingController.enabled = false;
                     _characterMovementController.enabled = false;
+                    
                     StartCoroutine(Die());
+                    
                 }
                 
             }
@@ -130,9 +142,15 @@ namespace Shooter
 
         IEnumerator Die()
         {
+            if (_deadExplosionUI != null)
+            {
+                _deadExplosionUI.Play(true);
+            }
             _animator.SetTrigger("IsDead");
             yield return new WaitForSeconds(3f);
+            
             Dead?.Invoke(this);
+            
             Destroy(gameObject);
             gameObject.GetComponent<BaseCharacter>().Spawn(this);
         }
@@ -142,9 +160,14 @@ namespace Shooter
             if (LayerUtils.IsBullet(other.gameObject))
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
+
+                _bloodDamageUI.Play();
+                _voiceDamage.Play();
+
                 _health -= bullet.Damage;
                 _healthBarUI.UpdateHealthBar(_health, _maxHealth);
                 Destroy(other.gameObject);
+                
             }
             else if (LayerUtils.IsPickUp(other.gameObject))
             {
