@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outputText: {fileID: 1936688481}
-  <GameDurationSeconds>k__BackingField: 60
+  <GameDurationSeconds>k__BackingField: 30
 --- !u!114 &7676535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9678df84516de4ab6d8a1993afac89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelsList: 0100000002000000
+  _levelsList: 010000000200000003000000
 --- !u!114 &409821337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6231,7 +6231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9678df84516de4ab6d8a1993afac89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelsList: 0100000002000000
+  _levelsList: 010000000200000003000000
 --- !u!114 &1994517092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14728,6 +14728,10 @@ PrefabInstance:
       propertyPath: _animator
       value: 
       objectReference: {fileID: 5673006208024355577}
+    - target: {fileID: 5673006207824532410, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
+      propertyPath: _maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5673006207824532412, guid: ba45a6161ae84aa4fa3c1bdb0ed24883, type: 3}
       propertyPath: m_RootOrder
       value: 3
