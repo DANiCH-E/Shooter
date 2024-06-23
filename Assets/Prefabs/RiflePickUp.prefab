@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac806bd938840e44a86ba82b8089904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: -533549880025194984, guid: 4e404d65871ba3e4a8a0e3ba62e988fe, type: 3}
+  _weaponFactory: {fileID: 11400000, guid: 254a3f99f6ce2734fa39ae153e16fdf1, type: 2}
 --- !u!65 &2088702627611419390
 BoxCollider:
   m_ObjectHideFlags: 0

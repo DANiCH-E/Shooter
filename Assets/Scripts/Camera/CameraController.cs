@@ -12,7 +12,7 @@ namespace Shooter.Camera
         private Vector3 _rotationOffset = Vector3.zero;
 
         [SerializeField]
-        private PlayerCharacter _player;
+        private PlayerCharacterView _player;
    
         //protected void Awake()
         //{

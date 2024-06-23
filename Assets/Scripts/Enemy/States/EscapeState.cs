@@ -9,13 +9,13 @@ namespace Shooter.Enemy.States
         private readonly EnemyTarget _target;
         private readonly EnemyDirectionController _enemyDirectionController;
 
-        private EnemyCharacter _enemycharacter;
+        private EnemyCharacterView _enemycharacter;
 
         private CharacterMovementController _characterMovementController;
 
         private Vector3 _currentPoint;
 
-        public EscapeState(EnemyTarget target, EnemyDirectionController enemyDirectionController, EnemyCharacter enemycharacter)
+        public EscapeState(EnemyTarget target, EnemyDirectionController enemyDirectionController, EnemyCharacterView enemycharacter)
         {
             _target = target;
             _enemyDirectionController = enemyDirectionController;

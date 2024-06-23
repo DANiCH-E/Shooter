@@ -13,15 +13,15 @@ namespace Shooter.Enemy
         [SerializeField] private int _procentForEscape = 30;
         private EnemyTarget _target;
         private EnemyStateMachine _stateMachine;
-        private EnemyCharacter _enemycharacter;
+        private EnemyCharacterView _enemycharacter;
         private WeaponUtils _weaponUtils;
         
 
         private bool shouldChase = false;
         protected void Awake()
         {
-            var player = FindObjectOfType<PlayerCharacter>();
-            _enemycharacter = GetComponent<EnemyCharacter>();
+            var player = GameManager.Instance.Player;
+            _enemycharacter = GetComponent<EnemyCharacterView>();
             var enemyDirectionController = GetComponent<EnemyDirectionController>();
 
             var navMesher = new NavMesher(transform);
@@ -33,9 +33,10 @@ namespace Shooter.Enemy
         }
         protected void Update()
         {
-            Weapon weapon = _enemycharacter.GetWeapon();
-            if (weapon.tag != _weaponUtils.Pistol)
-                shouldChase = true;
+            //WeaponView weapon = _enemycharacter.GetWeapon();
+            //if (weapon.tag != _weaponUtils.Pistol)
+            //    shouldChase = true;
+
             //Debug.Log(_enemycharacter);
             //Debug.Log(weapon.gameObject.name);
             //var hp = _enemycharacter.GetHP;

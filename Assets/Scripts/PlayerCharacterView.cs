@@ -5,7 +5,7 @@ namespace Shooter
 {
 
     [RequireComponent(typeof(PlayerMovementDirectionController))]
-    public class PlayerCharacter : BaseCharacter
+    public class PlayerCharacterView : BaseCharacterView
     {
         
     }

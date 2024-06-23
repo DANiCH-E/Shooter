@@ -1,82 +1,77 @@
-﻿using System.Collections;
+﻿using Shooter.Timer;
+using System.Collections;
 using UnityEngine;
 
 namespace Shooter.Movement
 {
-    [RequireComponent(typeof(CharacterController))]
-    public class CharacterMovementController : MonoBehaviour
+    public class CharacterMovementController : IMovementController
     {
         private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon;
 
-        [SerializeField]
-        private float _initialSpeed = 5f;
-        [SerializeField]
-        private float _speed;
-        [SerializeField]
-        private float _boost = 2f;
-        [SerializeField]
-        private float _boostForEscape = 0.1f;
-        [SerializeField]
-        private float _maxRadiansDelta = 10f;
-        
+        private readonly ITimer _timer;
 
-        public Vector3 MovementDirection { get; set; }
-        public Vector3 LookDirection { get; set; }
+        //[SerializeField]
+        //private float _initialSpeed = 5f;
 
-        public float GetSpeed { get { return _speed; } }
+        private readonly float _speed;
+        //[SerializeField]
+        //private float _boost = 2f;
+        //[SerializeField]
+        //private float _boostForEscape = 0.1f;
 
-        private CharacterController _characterController;
+        private readonly float _maxRadiansDelta;
+       
 
-        protected void Awake()
+        //public float GetSpeed { get { return _speed; } }
+
+
+        public CharacterMovementController(ICharacterConfig config, ITimer timer)
         {
-            _speed = _initialSpeed;
-            _characterController = GetComponent<CharacterController>();
-            _boostForEscape += _speed;
+            _speed = config.Speed;
+            _maxRadiansDelta = config.MaxRadiansDelta;
+
+            _timer = timer;
         }
 
-        protected void Update()
-        {
-            Translate();
+        //public void IncreaseSpeed()
+        //{
+        //    _speed *= _boost;
+        //}
 
-            if (_maxRadiansDelta > 0f && LookDirection != Vector3.zero)
-                Rotate();
+        //public void IncreaseSpeedForEscape()
+        //{
+        //    _speed = _boostForEscape;
+        //}
+
+        //public void ResetSpeed()
+        //{
+        //    _speed = _initialSpeed;
+        //}
+
+        public Vector3 Translate(Vector3 movementDirection)
+        {
+            return movementDirection * _speed * _timer.DeltaTime;
         }
 
-        public void IncreaseSpeed()
+        public Quaternion Rotate(Quaternion currentRotation, Vector3 lookDirection)
         {
-            _speed *= _boost;
-        }
-
-        public void IncreaseSpeedForEscape()
-        {
-            _speed = _boostForEscape;
-        }
-
-        public void ResetSpeed()
-        {
-            _speed = _initialSpeed;
-        }
-
-        private void Translate()
-        {
-            var delta = MovementDirection * _speed * Time.deltaTime;
-            _characterController.Move(delta);
-        }
-
-        private void Rotate()
-        {
-            var currentLookDirection = transform.rotation * Vector3.forward;
-            float sqrMagnitude = (currentLookDirection - LookDirection).sqrMagnitude;
-
-            if (sqrMagnitude > SqrEpsilon)
+            if (_maxRadiansDelta > 0f && lookDirection != Vector3.zero)
             {
-                var newRotation = Quaternion.Slerp(
-                    transform.rotation,
-                    Quaternion.LookRotation(LookDirection, Vector3.up),
-                    _maxRadiansDelta * Time.deltaTime);
+                var currentLookDirection = currentRotation * Vector3.forward;
+                float sqrMagnitude = (currentLookDirection - lookDirection).sqrMagnitude;
 
-                transform.rotation = newRotation;
+                if (sqrMagnitude > SqrEpsilon)
+                {
+                    var newRotation = Quaternion.Slerp(
+                        currentRotation,
+                        Quaternion.LookRotation(lookDirection, Vector3.up),
+                        _maxRadiansDelta * _timer.DeltaTime);
+
+                    return newRotation;
+                }
             }
+
+            return currentRotation;
         }
     }
 }

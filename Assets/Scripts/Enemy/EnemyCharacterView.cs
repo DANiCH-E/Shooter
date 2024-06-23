@@ -6,7 +6,7 @@ namespace Shooter.Enemy
 {
 
     [RequireComponent(typeof(EnemyDirectionController), typeof(EnemyAIController))]
-    public class EnemyCharacter : BaseCharacter
+    public class EnemyCharacterView : BaseCharacterView
     {
         
     }

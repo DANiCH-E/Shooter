@@ -10,8 +10,8 @@ namespace Shooter
         [SerializeField] private int _maxCount = 2;
         [SerializeField] private float _minSpawnIntervalSeconds = 2f;
         [SerializeField] private float _maxSpawnIntervalSeconds = 10f;
-        [SerializeField] private PlayerCharacter _playerPrefab;
-        [SerializeField] private EnemyCharacter _enemyPrefab;
+        [SerializeField] private PlayerCharacterView _playerPrefab;
+        [SerializeField] private EnemyCharacterView _enemyPrefab;
 
         private float _currentSpawnTimeSeconds;
         private int _currentCount;
@@ -19,7 +19,7 @@ namespace Shooter
 
         protected void Update()
         {
-            var player = FindObjectOfType<PlayerCharacter>();
+            var player = FindObjectOfType<PlayerCharacterView>();
             if (_currentCount < _maxCount)
             {
                 var spawnIntervalSeconds = Random.Range(_minSpawnIntervalSeconds, _maxSpawnIntervalSeconds);
@@ -37,7 +37,7 @@ namespace Shooter
                         var randomPosition = new Vector3(randomPointInsideRange.x, 0f, randomPointInsideRange.y) + transform.position;
                         var character = Instantiate(_playerPrefab, randomPosition, Quaternion.identity, transform);
                         
-                        character.OnSpawn += OnCharacterSpawned;
+                        //character.OnSpawn += OnCharacterSpawned;
                     }
                     else
                     {
@@ -45,7 +45,7 @@ namespace Shooter
                         var randomPosition = new Vector3(randomPointInsideRange.x, 0f, randomPointInsideRange.y) + transform.position;
                         var character = Instantiate(_enemyPrefab, randomPosition, Quaternion.identity, transform);
                         
-                        character.OnSpawn += OnCharacterSpawned;
+                        //character.OnSpawn += OnCharacterSpawned;
                     }
                     //Debug.Log(_currentCount);
                     
@@ -53,10 +53,10 @@ namespace Shooter
             }
         }
 
-        private void OnCharacterSpawned(BaseCharacter character)
+        private void OnCharacterSpawned(BaseCharacterView character)
         {
             _currentCount--;
-            character.OnSpawn -= OnCharacterSpawned;
+            //character.OnSpawn -= OnCharacterSpawned;
         }
 
         protected void OnDrawGizmos()
