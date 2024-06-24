@@ -32,9 +32,9 @@ namespace Shooter.Enemy.States
                 new Transition(
                     moveForwardState,
                     () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance),
-                 //new Transition(
-                 //   escapeState,
-                 //   () => _enemycharacter.GetHPProc() < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
+                 new Transition(
+                    escapeState,
+                    () => _enemycharacter.GetHPProc() < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
             });
 
             AddState(state: findWayState, transitions: new List<Transition>
@@ -55,9 +55,9 @@ namespace Shooter.Enemy.States
                 new Transition(
                     findWayState,
                     () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance),
-                //new Transition(
-                //    escapeState,
-                //    () => _enemycharacter.GetHPProc() < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
+                new Transition(
+                    escapeState,
+                    () => _enemycharacter.GetHPProc() < procentForEscape && Random.Range(0f, 100f) < probOfEscape),
             });
 
             AddState(state: escapeState, transitions: new List<Transition>

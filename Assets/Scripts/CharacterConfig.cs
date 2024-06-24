@@ -18,5 +18,13 @@ namespace Shooter
         [field: SerializeField]
         [Tooltip("Rotation speed")]
         public float MaxRadiansDelta { get; private set; }
+
+        [field: SerializeField]
+        public float InitialSpeed { get; private set; }
+
+        [field: SerializeField]
+        public float Boost { get; private set; }
+
+        public float BoostForEscape { get; private set; }
     }
 }

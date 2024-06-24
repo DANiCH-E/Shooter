@@ -37,7 +37,7 @@ namespace Shooter
                         var randomPosition = new Vector3(randomPointInsideRange.x, 0f, randomPointInsideRange.y) + transform.position;
                         var character = Instantiate(_playerPrefab, randomPosition, Quaternion.identity, transform);
                         
-                        //character.OnSpawn += OnCharacterSpawned;
+                        character.OnSpawn += OnCharacterSpawned;
                     }
                     else
                     {
@@ -45,7 +45,7 @@ namespace Shooter
                         var randomPosition = new Vector3(randomPointInsideRange.x, 0f, randomPointInsideRange.y) + transform.position;
                         var character = Instantiate(_enemyPrefab, randomPosition, Quaternion.identity, transform);
                         
-                        //character.OnSpawn += OnCharacterSpawned;
+                        character.OnSpawn += OnCharacterSpawned;
                     }
                     //Debug.Log(_currentCount);
                     
@@ -56,7 +56,7 @@ namespace Shooter
         private void OnCharacterSpawned(BaseCharacterView character)
         {
             _currentCount--;
-            //character.OnSpawn -= OnCharacterSpawned;
+            character.OnSpawn -= OnCharacterSpawned;
         }
 
         protected void OnDrawGizmos()

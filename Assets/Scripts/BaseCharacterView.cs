@@ -23,20 +23,21 @@ namespace Shooter
 
         private Animator _animator;
         private CharacterController _characterController;
+        private CharacterMovementController _characterMovementController;
 
         private WeaponView _weapon;
         //[SerializeField]
         //private float _maxHealth = 6f;
 
-        //[SerializeField] HealthBarUI _healthBarUI;
+        [SerializeField] HealthBarUI _healthBarUI;
 
-        //[SerializeField] private ParticleSystem _bloodDamageUI;
+        [SerializeField] private ParticleSystem _bloodDamageUI;
 
-        //[SerializeField] private ParticleSystem _deadExplosionUI;
+        [SerializeField] private ParticleSystem _deadExplosionUI;
 
-        //[SerializeField] private AudioSource _voiceDamage;
+        [SerializeField] private AudioSource _voiceDamage;
 
-        //public event Action<BaseCharacter> OnSpawn;
+        public event Action<BaseCharacterView> OnSpawn;
 
         //public float GetHP { get { return _health; } }
         //public float GetMaxHP { get { return _maxHealth; } }
@@ -56,10 +57,10 @@ namespace Shooter
 
 
 
-        //public virtual void Spawn(BaseCharacter character)
-        //{
-        //    OnSpawn?.Invoke(this);
-        //}
+        public virtual void Spawn(BaseCharacterView character)
+        {
+            OnSpawn?.Invoke(this);
+        }
 
         protected void Awake()
         {
@@ -68,7 +69,7 @@ namespace Shooter
             _movementDirectionSource = GetComponent<IMovementDirectionSource>();
 
             
-            //_healthBarUI = GetComponentInChildren<HealthBarUI>();
+            _healthBarUI = GetComponentInChildren<HealthBarUI>();
         }
 
         protected void Start()
@@ -111,11 +112,11 @@ namespace Shooter
 
 
 
-            //if (Input.GetKeyDown(KeyCode.Space) && this is PlayerCharacter)
+            //if (Input.GetKeyDown(KeyCode.Space) && this is PlayerCharacterView)
             //{
             //    _characterMovementController.IncreaseSpeed();
             //}
-            //else if (Input.GetKeyUp(KeyCode.Space) && this is PlayerCharacter)
+            //else if (Input.GetKeyUp(KeyCode.Space) && this is PlayerCharacterView)
             //{
             //    _characterMovementController.ResetSpeed();
             //}
@@ -168,12 +169,12 @@ namespace Shooter
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
 
-                //_bloodDamageUI.Play();
-                //_voiceDamage.Play();
+                _bloodDamageUI.Play();
+                _voiceDamage.Play();
 
                 Model.Damage(bullet.Damage);
 
-                //_healthBarUI.UpdateHealthBar(_health, _maxHealth);
+                _healthBarUI.UpdateHealthBar(Model.Health, Model.MaxHP);
                 Destroy(other.gameObject);
                 
             }
@@ -186,7 +187,7 @@ namespace Shooter
             }
         }
 
-        //public Weapon GetWeapon()
+        //public WeaponView GetWeapon()
         //{
         //    return _shootingController.GetWeapon;
         //}
@@ -199,6 +200,11 @@ namespace Shooter
             _weapon = weaponFactory.Create(_hand);
 
             Model.SetWeapon(_weapon.Model);
+        }
+
+        public float GetHPProc()
+        {
+            return Model.Health / Model.MaxHP * 100;
         }
 
         private void OnDeath()

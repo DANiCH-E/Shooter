@@ -17,8 +17,8 @@ namespace Shooter
 
         public float Health { get; private set; }
 
-        //[SerializeField]
-        //private float _maxHealth = 6f;
+
+        public float MaxHP {get; private set; }
 
         //[SerializeField] HealthBarUI _healthBarUI;
 
@@ -152,9 +152,6 @@ namespace Shooter
             _shootingController.SetWeapon(weapon);
         }
 
-        //public float GetHPProc()
-        //{
-        //    return _health / _maxHealth * 100;
-        //}
+        
     }
 }

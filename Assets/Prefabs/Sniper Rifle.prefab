@@ -334,8 +334,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8975467346356996113}
-  - component: {fileID: -533549880025194984}
   - component: {fileID: 1380335024175462322}
+  - component: {fileID: 5417944200006427917}
   m_Layer: 0
   m_Name: Sniper Rifle
   m_TagString: SniperRifle
@@ -360,27 +360,6 @@ Transform:
   - {fileID: 8797014106093799041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-533549880025194984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3799624367421959955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a1afec0fb05134aa6a80f510ae1fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BulletPrefab>k__BackingField: {fileID: 9189406389122034985, guid: c3c895876d950874e8c099d993e89c9e, type: 3}
-  <ShootRadius>k__BackingField: 60
-  <ShootFrequencySec>k__BackingField: 1.5
-  _damage: 5
-  _bulletMaxFlyDistance: 80
-  _bulletFlySpeed: 50
-  _bulletSpawnPosition: {fileID: 8797014106093799041}
-  _shootingParticle: {fileID: 3619165226041147075}
-  _shootAudio: {fileID: 1380335024175462322}
 --- !u!82 &1380335024175462322
 AudioSource:
   m_ObjectHideFlags: 0
@@ -477,6 +456,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5417944200006427917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3799624367421959955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d06c0f6afc8ed14b9bc1dc10390637a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BulletSpawnPosition>k__BackingField: {fileID: 8797014106093799041}
+  _bulletPrefab: {fileID: 9189406389122034985, guid: c3c895876d950874e8c099d993e89c9e, type: 3}
+  _shootingParticle: {fileID: 3619165226041147075}
+  _shootAudio: {fileID: 1380335024175462322}
 --- !u!1 &4265553296000354397
 GameObject:
   m_ObjectHideFlags: 0

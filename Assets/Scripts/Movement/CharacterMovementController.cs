@@ -10,14 +10,14 @@ namespace Shooter.Movement
 
         private readonly ITimer _timer;
 
-        //[SerializeField]
-        //private float _initialSpeed = 5f;
+        
+        private readonly float _initialSpeed;
 
-        private readonly float _speed;
-        //[SerializeField]
-        //private float _boost = 2f;
-        //[SerializeField]
-        //private float _boostForEscape = 0.1f;
+        private  float _speed;
+        
+        private float _boost;
+        
+        private float _boostForEscape;
 
         private readonly float _maxRadiansDelta;
        
@@ -29,24 +29,27 @@ namespace Shooter.Movement
         {
             _speed = config.Speed;
             _maxRadiansDelta = config.MaxRadiansDelta;
+            _initialSpeed = config.InitialSpeed;
+            _boost = config.Boost;
+            _boostForEscape = config.BoostForEscape;
 
             _timer = timer;
         }
 
-        //public void IncreaseSpeed()
-        //{
-        //    _speed *= _boost;
-        //}
+        public void IncreaseSpeed()
+        {
+            _speed *= _boost;
+        }
 
-        //public void IncreaseSpeedForEscape()
-        //{
-        //    _speed = _boostForEscape;
-        //}
+        public void IncreaseSpeedForEscape()
+        {
+            _speed = _boostForEscape;
+        }
 
-        //public void ResetSpeed()
-        //{
-        //    _speed = _initialSpeed;
-        //}
+        public void ResetSpeed()
+        {
+            _speed = _initialSpeed;
+        }
 
         public Vector3 Translate(Vector3 movementDirection)
         {

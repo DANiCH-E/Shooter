@@ -1405,6 +1405,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseWeapon: {fileID: 11400000, guid: 48bd3948d48a2c443a29c33f20c6bf93, type: 2}
   _hand: {fileID: 5673006207870251923}
+  _healthBarUI: {fileID: 1564748269971968731}
+  _bloodDamageUI: {fileID: 6832681929927533038}
+  _deadExplosionUI: {fileID: 7156021719119064457}
+  _voiceDamage: {fileID: 5467813928809096329}
 --- !u!143 &5673006207824532411
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2439,6 +2443,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37459004293b38f48a9a8bc5373f419b, type: 3}
+--- !u!198 &6832681929927533038 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: 37459004293b38f48a9a8bc5373f419b, type: 3}
+  m_PrefabInstance: {fileID: 6832681929945497134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6832681929945883822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 37459004293b38f48a9a8bc5373f419b, type: 3}
@@ -2560,5 +2569,10 @@ PrefabInstance:
 --- !u!4 &7034459358713618551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4882558394911734, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
+  m_PrefabInstance: {fileID: 7029612336901352321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7156021719119064457 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198572881580852744, guid: 7e48ba6b1b968764490bbc70b66e3fe1, type: 3}
   m_PrefabInstance: {fileID: 7029612336901352321}
   m_PrefabAsset: {fileID: 0}

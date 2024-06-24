@@ -15,3 +15,5 @@ MonoBehaviour:
   <Health>k__BackingField: 2
   <Speed>k__BackingField: 5
   <MaxRadiansDelta>k__BackingField: 10
+  <InitialSpeed>k__BackingField: 5
+  <Boost>k__BackingField: 2
