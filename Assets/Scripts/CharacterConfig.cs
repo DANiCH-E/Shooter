@@ -20,6 +20,9 @@ namespace Shooter
         public float MaxRadiansDelta { get; private set; }
 
         [field: SerializeField]
+        public float MaxHP { get; private set; }
+
+        [field: SerializeField]
         public float InitialSpeed { get; private set; }
 
         [field: SerializeField]

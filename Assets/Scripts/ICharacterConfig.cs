@@ -5,6 +5,7 @@ namespace Shooter
     {
         float Health { get; }
         float Speed { get; }
+        float MaxHP { get; }
         float MaxRadiansDelta { get; }
         float InitialSpeed { get; }
         float Boost { get; }

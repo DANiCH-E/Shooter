@@ -58,6 +58,7 @@ namespace Shooter
             _characterMovementController = movementController;
             _shootingController = shootingController;
             Health = config.Health;
+            MaxHP = config.MaxHP;
         }
 
         public void Initialize(Vector3 position, Quaternion rotation)
