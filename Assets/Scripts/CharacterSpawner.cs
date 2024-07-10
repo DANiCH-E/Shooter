@@ -1,5 +1,7 @@
 ﻿using Shooter.Enemy;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace Shooter
@@ -58,7 +60,8 @@ namespace Shooter
             _currentCount--;
             character.OnSpawn -= OnCharacterSpawned;
         }
-
+        
+#if UNITY_EDITOR
         protected void OnDrawGizmos()
         {
             var cashedColor = Handles.color;
@@ -66,5 +69,6 @@ namespace Shooter
             Handles.DrawWireDisc(transform.position, Vector3.up, _range);
             Handles.color = cashedColor;
         }
+#endif
     }
 }

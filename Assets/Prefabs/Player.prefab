@@ -1298,13 +1298,13 @@ GameObject:
   - component: {fileID: 5673006207824532412}
   - component: {fileID: 5673006207824532413}
   - component: {fileID: 5673006207824532414}
-  - component: {fileID: 5673006207824532408}
   - component: {fileID: 5673006207824532409}
   - component: {fileID: 5673006207824532410}
   - component: {fileID: 5673006207824532411}
   - component: {fileID: 5673006207824532391}
   - component: {fileID: 1092268587665295292}
   - component: {fileID: 5467813928809096329}
+  - component: {fileID: 1886861687192990916}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1380,18 +1380,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5673006207824532408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5673006207824532400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7115928d0fd00f746b2eb1aa61abb4e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5673006207824532409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1585,6 +1573,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1886861687192990916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673006207824532400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a1fe3d7f91d29428f5c1fd75c35844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5673006207870251924
 GameObject:
   m_ObjectHideFlags: 0

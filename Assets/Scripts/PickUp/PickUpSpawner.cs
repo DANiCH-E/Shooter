@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace Shooter.PickUp
@@ -51,7 +53,7 @@ namespace Shooter.PickUp
             _currentCount--;
             pickedUpItem.OnPickedUp -= OnItemPickedUp;
         }
-
+#if UNITY_EDITOR
         protected void OnDrawGizmos()
         {
             var cashedColor = Handles.color;
@@ -59,5 +61,6 @@ namespace Shooter.PickUp
             Handles.DrawWireDisc(transform.position, Vector3.up, _range);
             Handles.color = cashedColor;
         }
+#endif
     }
 }

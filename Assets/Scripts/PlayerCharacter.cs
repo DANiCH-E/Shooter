@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace Shooter
 {
-
-    [RequireComponent(typeof(PlayerMovementDirectionController))]
+#if UNITY_ANDROID
+    [RequireComponent(typeof(JoystickPlayerMovementDirectionController))]
+#elif UNITY_STANDALONE || UNITY_EDITOR
+    [RequireComponent(typeof(PlayerMovementDirectionController))] //для управления с клавы
+#endif
     public class PlayerCharacter : BaseCharacter
     {
         
